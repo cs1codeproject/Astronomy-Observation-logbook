@@ -115,7 +115,6 @@ def submit_observation(state: State, object_name: str, object_type: str, date: s
 @route
 def summary_page(state: State) -> Page:
     """Displays summary statistics."""
-    contents = [Header("Observation Summary")]
     total_visibility = 0
     cloudy_count = 0
     for observation in state.observations:
@@ -126,50 +125,45 @@ def summary_page(state: State) -> Page:
 
     if observation_count > 0:
         average_visibility = (total_visibility / observation_count)
-        contents.append(f"Total Observations: {observation_count}")
-        contents.append(f"Average Bortle Rating: {round(average_visibility, 2)}")
-        contents.append(f"Cloudy Observations: {cloudy_count}")
-        contents.append(
-            f"Most Recent Object: "
-            f"{state.last_object_viewed}"
-        )
-
+        stats_contents = [
+            f"Total Observations: {observation_count}",
+            f"Average Bortle Rating: {round(average_visibility, 2)}",
+            f"Cloudy Observations: {cloudy_count}",
+            f"Most Recent Object: {state.last_object_viewed}"
+        ]
     else:
-        contents.append("No observations have been recorded.")
-    contents.append(Button("Back Home", index))
+        stats_contents = ["No observations have been recorded."]
 
-    return Page(state, contents)
+    return Page(state, [Header("Observation Summary")] + stats_contents + [Button("Back Home", index)])
 
 @route
 def favorites_page(state: State) -> Page:
     """Displays favorite observations."""
-    contents = [Header("Favorite Objects")]
+    fav_contents = []
     for favorite in state.favorite_objects.values():
-        contents.append(f"{favorite.object_name}")
-        contents.append(f"Type: {favorite.object_type}")
-        contents.append(f"Visibility: {favorite.visibility}")
-    contents.append(Button("Back Home", index))
-    return Page(state, contents)
+        fav_contents.append(f"{favorite.object_name}")
+        fav_contents.append(f"Type: {favorite.object_type}")
+        fav_contents.append(f"Visibility: {favorite.visibility}")
+        
+    return Page(state, [Header("Favorite Objects")] + fav_contents + [Button("Back Home", index)])
 
 @route
 def view_log_page(state: State) -> Page:
     """Displays all entered observations."""
-    contents = [Header("All Observations Logged")]
-    
+    log_contents = []
     if len(state.observations) == 0:
-        contents.append("No observations have been recorded yet.")
+        log_contents.append("No observations have been recorded yet.")
     else:
         for obs in state.observations:
-            contents.append(f"Object: {obs.object_name}")
-            contents.append(f"Type: {obs.object_type}")
-            contents.append(f"Date: {obs.date}")
-            contents.append(f"Visibility: {obs.visibility}")
-            contents.append(f"Cloudy: {obs.cloudy}")
-            contents.append(f"Notes: {obs.notes}")
-            contents.append("---")
+            log_contents.append(f"Object: {obs.object_name}")
+            log_contents.append(f"Type: {obs.object_type}")
+            log_contents.append(f"Date: {obs.date}")
+            log_contents.append(f"Visibility: {obs.visibility}")
+            log_contents.append(f"Cloudy: {obs.cloudy}")
+            log_contents.append(f"Notes: {obs.notes}")
+            log_contents.append("---")
             
-    contents.append(Button("Back Home", index))
-    return Page(state, contents)
+    return Page(state, [Header("All Observations Logged")] + log_contents + [Button("Back Home", index)])
 
 @route
 def clear_observations(state: State) -> Page:
