@@ -1,6 +1,6 @@
 from drafter import *
 from dataclasses import dataclass
-from bakery import assert_equal
+from bakery import assert_equal as bakery_assert_equal
 
 @dataclass
 class Observation:
