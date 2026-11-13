@@ -340,7 +340,7 @@ set_site_information(
     "Astronomy Observation Logbook",
     "Austin M",
     "An app to log and track astronomy observations."
-    ""
+    "",
     ""
 )
 
