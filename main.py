@@ -341,6 +341,6 @@ set_site_information(
         description="This site acts as a digital logbook for astronomical observations.",
         sources="For CISC106 at udel, LLM used in(see files)",
         planning="",
-        links=[]
+        links=[https://cs1codeproject.github.io/Astronomy-Observation-logbook/]
     )
 start_server(State([], {}, 0, "Welcome to the Observation Logbook", "None"))
