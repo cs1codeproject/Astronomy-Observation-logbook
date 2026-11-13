@@ -336,11 +336,4 @@ assert_equal(
             Button("Clear Log", "clear_observations"),
             Button("View Log", "view_log_page")]))
 
-set_site_information(
-        author="Austin Myhre",
-        description="This site acts as a digital logbook for astronomical observations.",
-        sources="For CISC106 at udel, LLM used in(see files)",
-        planning="",
-        links=[https://cs1codeproject.github.io/Astronomy-Observation-logbook/]
-    )
 start_server(State([], {}, 0, "Welcome to the Observation Logbook", "None"))
