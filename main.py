@@ -341,6 +341,7 @@ set_site_information(
     "Austin M",
     "An app to log and track astronomy observations."
     "",
+    "",
     ""
 )
 
