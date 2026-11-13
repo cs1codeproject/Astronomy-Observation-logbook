@@ -336,4 +336,10 @@ assert_equal(
             Button("Clear Log", "clear_observations"),
             Button("View Log", "view_log_page")]))
 
+set_site_information(
+    title="Astronomy Observation Logbook",
+    author="Austin M",
+    description="An app to log and track astronomy observations."
+)
+
 start_server(State([], {}, 0, "Welcome to the Observation Logbook", "None"))
